@@ -1,159 +1,43 @@
 scriptencoding utf-8
 " https://unicode-table.com/en/#1D400
+" https://unicode-table.com/en/#24B6
 function! Artify(string, type) abort
     let list = split(a:string, '\zs')
-    if a:type ==# 'circled_full'
-        let result = Artify_circled_full(list)
-    elseif a:type ==# 'circled_half'
-        let result = Artify_circled_half(list)
-    elseif a:type ==# 'bold'
+    if a:type ==# 'circled'
+        let result = Artify_circled(list)
+    elseif a:type ==# 'bold'  " +number
         let result = Artify_bold(list)
-    elseif a:type ==# 'italic'
+    elseif a:type ==# 'italic'  " lack 'h'
         let result = Artify_italic(list)
     elseif a:type ==# 'bold_italic'
         let result = Artify_bold_italic(list)
-    elseif a:type ==# 'script'
+    elseif a:type ==# 'script'  " lack of many characters
         let result = Artify_script(list)
     elseif a:type ==# 'script_bold'
         let result = Artify_script_bold(list)
-    elseif a:type ==# 'fraktur'
+    elseif a:type ==# 'fraktur'  " lack of many characters
         let result = Artify_fraktur(list)
     elseif a:type ==# 'fraktur_bold'
         let result = Artify_fraktur_bold(list)
-    elseif a:type ==# 'sans_serif'
+    elseif a:type ==# 'sans_serif'  " +number
         let result = Artify_sans_serif(list)
-    elseif a:type ==# 'sans_serif_bold'
+    elseif a:type ==# 'sans_serif_bold'  " +number
         let result = Artify_sans_serif_bold(list)
     elseif a:type ==# 'sans_serif_italic'
         let result = Artify_sans_serif_italic(list)
     elseif a:type ==# 'sans_serif_bold_italic'
         let result = Artify_sans_serif_bold_italic(list)
-    elseif a:type ==# 'monospace'
+    elseif a:type ==# 'monospace'  " +number
         let result = Artify_monospace(list)
-    elseif a:type ==# 'double_struck'
+    elseif a:type ==# 'double_struck'  " +number  lack of many characters
         let result = Artify_double_struck(list)
     else
         let result = ''
     endif
     return result
 endfunction
-"{{{Artify_circled_full()
-function! Artify_circled_full(list)
-    let list_artify = []
-    for element in a:list
-        if element ==# 'a'
-            let list_artify = list_artify + ['ⓐ ']
-        elseif element ==# 'b'
-            let list_artify = list_artify + ['ⓑ ']
-        elseif element ==# 'c'
-            let list_artify = list_artify + ['ⓒ ']
-        elseif element ==# 'd'
-            let list_artify = list_artify + ['ⓓ ']
-        elseif element ==# 'e'
-            let list_artify = list_artify + ['ⓔ ']
-        elseif element ==# 'f'
-            let list_artify = list_artify + ['ⓕ ']
-        elseif element ==# 'g'
-            let list_artify = list_artify + ['ⓖ ']
-        elseif element ==# 'h'
-            let list_artify = list_artify + ['ⓗ ']
-        elseif element ==# 'i'
-            let list_artify = list_artify + ['ⓘ ']
-        elseif element ==# 'j'
-            let list_artify = list_artify + ['ⓙ ']
-        elseif element ==# 'k'
-            let list_artify = list_artify + ['ⓚ ']
-        elseif element ==# 'l'
-            let list_artify = list_artify + ['ⓛ ']
-        elseif element ==# 'm'
-            let list_artify = list_artify + ['ⓜ ']
-        elseif element ==# 'n'
-            let list_artify = list_artify + ['ⓝ ']
-        elseif element ==# 'o'
-            let list_artify = list_artify + ['ⓞ ']
-        elseif element ==# 'p'
-            let list_artify = list_artify + ['ⓟ ']
-        elseif element ==# 'q'
-            let list_artify = list_artify + ['ⓠ ']
-        elseif element ==# 'r'
-            let list_artify = list_artify + ['ⓡ ']
-        elseif element ==# 's'
-            let list_artify = list_artify + ['ⓢ ']
-        elseif element ==# 't'
-            let list_artify = list_artify + ['ⓣ ']
-        elseif element ==# 'u'
-            let list_artify = list_artify + ['ⓤ ']
-        elseif element ==# 'v'
-            let list_artify = list_artify + ['ⓥ ']
-        elseif element ==# 'w'
-            let list_artify = list_artify + ['ⓦ ']
-        elseif element ==# 'x'
-            let list_artify = list_artify + ['ⓧ ']
-        elseif element ==# 'y'
-            let list_artify = list_artify + ['ⓨ ']
-        elseif element ==# 'z'
-            let list_artify = list_artify + ['ⓩ ']
-        elseif element ==# 'A'
-            let list_artify = list_artify + ['Ⓐ ']
-        elseif element ==# 'B'
-            let list_artify = list_artify + ['Ⓑ ']
-        elseif element ==# 'C'
-            let list_artify = list_artify + ['Ⓒ ']
-        elseif element ==# 'D'
-            let list_artify = list_artify + ['Ⓓ ']
-        elseif element ==# 'E'
-            let list_artify = list_artify + ['Ⓔ ']
-        elseif element ==# 'F'
-            let list_artify = list_artify + ['Ⓕ ']
-        elseif element ==# 'G'
-            let list_artify = list_artify + ['Ⓖ ']
-        elseif element ==# 'H'
-            let list_artify = list_artify + ['Ⓗ ']
-        elseif element ==# 'I'
-            let list_artify = list_artify + ['Ⓘ ']
-        elseif element ==# 'J'
-            let list_artify = list_artify + ['Ⓙ ']
-        elseif element ==# 'K'
-            let list_artify = list_artify + ['Ⓚ ']
-        elseif element ==# 'L'
-            let list_artify = list_artify + ['Ⓛ ']
-        elseif element ==# 'M'
-            let list_artify = list_artify + ['Ⓜ ']
-        elseif element ==# 'N'
-            let list_artify = list_artify + ['Ⓝ ']
-        elseif element ==# 'O'
-            let list_artify = list_artify + ['Ⓞ ']
-        elseif element ==# 'P'
-            let list_artify = list_artify + ['Ⓟ ']
-        elseif element ==# 'Q'
-            let list_artify = list_artify + ['Ⓠ ']
-        elseif element ==# 'R'
-            let list_artify = list_artify + ['Ⓡ ']
-        elseif element ==# 'S'
-            let list_artify = list_artify + ['Ⓢ ']
-        elseif element ==# 'T'
-            let list_artify = list_artify + ['Ⓣ ']
-        elseif element ==# 'U'
-            let list_artify = list_artify + ['Ⓤ ']
-        elseif element ==# 'V'
-            let list_artify = list_artify + ['Ⓥ ']
-        elseif element ==# 'W'
-            let list_artify = list_artify + ['Ⓦ ']
-        elseif element ==# 'X'
-            let list_artify = list_artify + ['Ⓧ ']
-        elseif element ==# 'Y'
-            let list_artify = list_artify + ['Ⓨ ']
-        elseif element ==# 'Z'
-            let list_artify = list_artify + ['Ⓩ ']
-        else
-            let list_artify = list_artify + [element]
-        endif
-    endfor
-    return join(list_artify, '')
-endfunction
-"}}}
-"{{{Artify_circled_half()
-function! Artify_circled_half(list)
+"{{{Artify_circled()
+function! Artify_circled(list)
     let list_artify = []
     for element in a:list
         if element ==# 'a'
