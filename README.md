@@ -51,3 +51,64 @@ All available types are listed blow:
 | monospace              | yes            | yes                           |
 | double_struck          | yes            | no                            |
 
+# Example Configuration
+
+This is the lightline configuration of the picture above.
+
+```vim
+function! Articy_active_tab_num(n) abort"{{{
+    return Artify(a:n, 'bold')." \ue0bb"
+endfunction"}}}
+function! Artify_inactive_tab_num(n) abort"{{{
+    return Artify(a:n, 'double_struck')." \ue0bb"
+endfunction"}}}
+function! Artify_lightline_tab_filename(s) abort"{{{
+    return Artify(lightline#tab#filename(a:s), 'monospace')
+endfunction"}}}
+function! Artify_lightline_mode() abort"{{{
+    return Artify(lightline#mode(), 'monospace')
+endfunction"}}}
+function! Artify_line_percent() abort"{{{
+    return Artify(string((100*line('.'))/line('$')), 'bold')
+endfunction"}}}
+function! Artify_line_num() abort"{{{
+    return Artify(string(line('.')), 'bold')
+endfunction"}}}
+function! Artify_col_num() abort"{{{
+    return Artify(string(getcurpos()[2]), 'bold')
+endfunction"}}}
+
+
+let g:lightline.tab_component_function = {
+            \ 'artify_activetabnum': 'Articy_active_tab_num',
+            \ 'artify_inactivetabnum': 'Artify_inactive_tab_num',
+            \ 'artify_filename': 'Artify_lightline_tab_filename',
+            \ }
+
+
+let g:lightline.component = {
+            \ 'artify_mode': '%{Artify_lightline_mode()}',
+            \ 'artify_lineinfo': "%2{Artify_line_percent()}\uf295 %3{Artify_line_num()}:%-2{Artify_col_num()}",
+            \ }
+
+
+let g:lightline.active = {
+            \ 'left': [ [ 'artify_mode', 'paste' ],
+            \           [ 'readonly', 'filename', 'modified', 'fileformat', 'devicons_filetype' ] ],
+            \ 'right': [ [ 'artify_lineinfo' ],
+            \            g:Lightline_StatusIndicators + g:Lightline_Linter,
+            \           [ 'asyncrun_status' ] ]
+            \ }
+let g:lightline.inactive = {
+            \ 'left': [ [ 'filename' , 'modified', 'fileformat', 'devicons_filetype' ]],
+            \ 'right': [ [ 'artify_lineinfo' ] ]
+            \ }
+let g:lightline.tabline = {
+            \ 'left': [ [ 'vim_logo', 'tabs' ] ],
+            \ 'right': [ [ 'artify_gitbranch' ],
+            \ [ g:Lightline_GitStatus ] ]
+            \ }
+let g:lightline.tab = {
+            \ 'active': [ 'artify_activetabnum', 'artify_filename', 'modified' ],
+            \ 'inactive': [ 'artify_inactivetabnum', 'filename', 'modified' ] }
+```
