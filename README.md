@@ -53,7 +53,7 @@ All available types are listed blow:
 
 # Example Configuration
 
-This is the lightline configuration of the picture above.
+This is the example lightline configuration of the picture above. For more information, check this [gist](https://gist.github.com/sainnhe/b8240bc047313fd6185bb8052df5a8fb).
 
 ```vim
 function! Articy_active_tab_num(n) abort"{{{
