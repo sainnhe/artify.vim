@@ -26,7 +26,7 @@ For example, my twitter name is "Sainnhepark", and now I can use this plugin to 
 
 This plugin is implemented in pure vim script, I've tried my best to optimize it's performance, but it's still quite slow.
 
-For neovim users, consider this [lua implementation](https://github.com/delphinus/artify.nvim) instead.
+For neovim users, consider this [lua implementation](https://github.com/delphinus/artify.nvim) instead, it's about 20~30 times faster than this implementation.
 
 ## Installation
 
